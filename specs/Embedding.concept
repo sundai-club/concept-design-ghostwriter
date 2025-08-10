@@ -1,0 +1,29 @@
+<concept_spec>
+
+concept Embedding
+
+purpose
+    to embed chunks for semantic search and maintain a vector index for retrieval
+
+state
+    a set of Embeddings with
+        a embedding String
+        a chunk String
+        a vector Json
+
+actions
+    upsert (embedding: String, chunk: String, vector: Json) : (embedding: String)
+        store an embedding vector for the given chunk
+        return embedding
+
+queries
+    _byChunk (chunk: String) : (embedding: String, chunk: String, vector: Json)
+        fetch embedding for a chunk
+
+operational principle
+    after upsert (embedding: e1, chunk: c1, vector: [0.1,0.2]) : (embedding: e1)
+    then _byChunk (chunk: c1) yields e1 with same vector
+
+</concept_spec>
+
+

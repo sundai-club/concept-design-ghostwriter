@@ -1,0 +1,35 @@
+<concept_spec>
+
+concept Manuscript
+
+purpose
+    to ingest a manuscript file, normalize it to plain text, and maintain metadata for downstream analysis
+
+state
+    a set of Manuscripts with
+        a manuscript String
+        a filename String
+        a mime String
+        a text String
+        a pages Number
+
+actions
+    upload (manuscript: String, filename: String, mime: String) : (manuscript: String)
+        register a new manuscript with metadata; content will be provided separately
+        return manuscript
+    setText (manuscript: String, text: String, pages: Number) : (manuscript: String)
+        set the normalized plain text and page count for the manuscript
+        return manuscript
+
+queries
+    _get (manuscript: String) : (manuscript: String, filename: String, mime: String, text: String, pages: Number)
+        fetch the manuscript and text
+
+operational principle
+    after upload (manuscript: m, filename: "book.txt", mime: "text/plain") : (manuscript: m)
+    and setText (manuscript: m, text: "Once upon a time...", pages: 1) : (manuscript: m)
+    then _get (manuscript: m) shows text "Once upon a time..."
+
+</concept_spec>
+
+

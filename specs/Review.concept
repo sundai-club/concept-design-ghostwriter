@@ -1,0 +1,38 @@
+<concept_spec>
+
+concept Review
+
+purpose
+    to orchestrate multi-stage review of a manuscript with citations to chunks and produce structured ratings and narratives
+
+state
+    a set of Reviews with
+        a review String
+        a manuscript String
+        a stage String
+        a output Json
+
+actions
+    start (review: String, manuscript: String) : (review: String)
+        begin a new review process for a manuscript
+        return review
+    runStage (review: String, manuscript: String, stage: String) : (review: String)
+        run a specific stage of the review
+        return review
+    record (review: String, manuscript: String, stage: String, output: Json) : (review: String)
+        record structured output with citations for a stage
+        return review
+
+queries
+    _byManuscript (manuscript: String) : (review: String, manuscript: String, stage: String, output: Json)
+        fetch reviews for a manuscript
+
+operational principle
+    after start (review: r, manuscript: m) : (review: r)
+    and runStage (review: r, manuscript: m, stage: "structure") : (review: r)
+    and record (review: r, manuscript: m, stage: "structure", output: { score: 0.8 }) : (review: r)
+    then _byManuscript (manuscript: m) yields record for stage "structure"
+
+</concept_spec>
+
+

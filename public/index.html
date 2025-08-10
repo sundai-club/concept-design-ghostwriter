@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MeaningMaker</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+    <header class="header">
+        <h1>MeaningMaker</h1>
+        <p class="subtitle">LLM-powered manuscript evaluation with verifiable citations</p>
+    </header>
+    <main class="container">
+        <section class="card upload">
+            <h2>Upload Manuscript</h2>
+            <textarea id="manuscript" rows="10" placeholder="Paste plain text to simulate upload..."
+                class="input"></textarea>
+            <button id="uploadBtn" class="btn">Start Review</button>
+        </section>
+
+        <section class="card status">
+            <h2>Job Status</h2>
+            <div id="status"></div>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h3>AI Review</h3>
+                <div id="review"></div>
+            </div>
+            <div class="card">
+                <h3>Manuscript</h3>
+                <pre id="viewer" class="viewer"></pre>
+            </div>
+        </section>
+    </main>
+    <script src="/main.js"></script>
+</body>
+
+</html>

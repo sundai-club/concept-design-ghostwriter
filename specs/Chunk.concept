@@ -1,0 +1,33 @@
+<concept_spec>
+
+concept Chunk
+
+purpose
+    to segment manuscripts into semantic chunks and anchor them to source positions for citation
+
+state
+    a set of Chunks with
+        a chunk String
+        a manuscript String
+        a text String
+        a page Number
+        a start Number
+        an end Number
+
+actions
+    create (chunk: String, manuscript: String, text: String, page: Number, start: Number, end: Number) : (chunk: String)
+        register a new chunk linked to a manuscript
+        return chunk
+
+queries
+    _byManuscript (manuscript: String) : (chunk: String, manuscript: String, text: String, page: Number, start: Number, end: Number)
+        fetch all chunks belonging to a manuscript
+
+operational principle
+    after create (chunk: c1, manuscript: m, text: "para 1", page: 1, start: 0, end: 10) : (chunk: c1)
+    and create (chunk: c2, manuscript: m, text: "para 2", page: 1, start: 11, end: 20) : (chunk: c2)
+    then _byManuscript (manuscript: m) yields both c1 and c2
+
+</concept_spec>
+
+

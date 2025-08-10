@@ -1,0 +1,39 @@
+<concept_spec>
+
+concept MeaningMaker
+
+purpose
+    to offer a bootstrap API for the MeaningMaker webservice: upload manuscripts, stream review progress, and fetch results
+
+state
+    a set of Jobs with
+        a job String
+        a manuscript String
+        a status String
+        a stage String
+        a summary Json
+
+actions
+    createJob (job: String, manuscript: String) : (job: String)
+        create a new job for the manuscript review
+        return job
+    updateStatus (job: String, status: String, stage: String) : (job: String)
+        update job status and current stage
+        return job
+    setSummary (job: String, summary: Json) : (job: String)
+        set final summary and ratings
+        return job
+
+queries
+    _get (job: String) : (job: String, manuscript: String, status: String, stage: String, summary: Json)
+        fetch job info
+
+operational principle
+    after createJob (job: j, manuscript: m) : (job: j)
+    and updateStatus (job: j, status: "running", stage: "structure") : (job: j)
+    and setSummary (job: j, summary: { overall: 0.85 }) : (job: j)
+    then _get (job: j) shows status and summary
+
+</concept_spec>
+
+

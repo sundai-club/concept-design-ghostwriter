@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card {
+    @apply bg-panel border border-border rounded-xl p-4 shadow-xl;
+}
+
+.btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand text-white hover:bg-blue-600 transition;
+}
+
+.input {
+    @apply w-full bg-bg border border-[#253057] rounded-lg px-3 py-2 text-text placeholder:text-subtext;
+}
+
+.pill {
+    @apply inline-block px-2 py-0.5 rounded-full border border-[#253057] text-xs text-subtext;
+}
